@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var NotesList = React.createClass({
+        render: function() {
+          return (
+            <ol>
+              {
+                React.Children.map(this.props.children, function (child) {
+                  return <li>{child}</li>;
+                })
+              }
+            </ol>
+          );
+        }
+      });
+      var HelloMessage = React.createClass({
+        render: function() {
+          return <div>The age of {this.props.name} is {this.props.age}</div>
+          ;
+        }
+      });
+      ReactDOM.render(
+        <NotesList>
+          <span><HelloMessage name="John" age="23"/></span>
+          <span><HelloMessage name="Tom" age="28"/></span>
+          <span><HelloMessage name="Montilos" age="35"/></span>
+        </NotesList>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
